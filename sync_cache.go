@@ -32,6 +32,10 @@ func NewSyncCache(size int, expiry, randomExp time.Duration, cacheNil bool) (*Sy
 		return nil, err
 	}
 
+	if randomExp == 0 {
+		randomExp = 1 * time.Nanosecond
+	}
+
 	return &SyncCache{
 		expiry:    expiry,
 		randomExp: randomExp,

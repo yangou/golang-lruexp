@@ -36,6 +36,10 @@ func NewAsyncCache(size int, expiry, randomExp time.Duration, cacheNil bool, onE
 		return nil, err
 	}
 
+	if randomExp == 0 {
+		randomExp = 1 * time.Nanosecond
+	}
+
 	return (&AsyncCache{
 		expiry:    expiry,
 		randomExp: randomExp,
